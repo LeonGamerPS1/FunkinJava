@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://apache.org"
+    xmlns:xsi="http://w3.org"
+    xsi:schemaLocation="http://apache.org http://apache.org">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.funkinjava</groupId>
+    <artifactId>funkinjav</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <!-- Aktuelles JNI-Jaylib (unterstützt Java 8+ und liefert raylib 6.0) -->
+        <jaylib.version>6.0.1-0</jaylib.version>
+
+        <!-- Festgesetzt auf Ihr gewünschtes Java 11 -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- Neues Group-ID-Paket für die aktuelle JNI-Variante -->
+        <dependency>
+            <groupId>uk.co.electronstudio.jaylib</groupId>
+            <artifactId>jaylib</artifactId>
+            <version>${jaylib.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Erstellt die fertige, ausführbare JAR-Datei -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.7.1</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.funkinjava.Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
