@@ -9,17 +9,15 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <!-- Aktuelles JNI-Jaylib (unterstützt Java 8+ und liefert raylib 6.0) -->
+        <!-- Aktuelles JNI-Jaylib -->
         <jaylib.version>6.0.1-0</jaylib.version>
+        
 
-        <!-- Festgesetzt auf Ihr gewünschtes Java 11 -->
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+    
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <!-- Neues Group-ID-Paket für die aktuelle JNI-Variante -->
         <dependency>
             <groupId>uk.co.electronstudio.jaylib</groupId>
             <artifactId>jaylib</artifactId>
@@ -29,6 +27,16 @@
 
     <build>
         <plugins>
+            <!-- 1. EXPLIZITES COMPILER PLUGIN FÜR JAVA 25 UNTERSTÜTZUNG -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version> <!-- Wichtig für moderne Java-Versionen -->
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
+
             <!-- Erstellt die fertige, ausführbare JAR-Datei -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

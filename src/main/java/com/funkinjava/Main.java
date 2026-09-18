@@ -7,6 +7,7 @@ import com.raylib.Colors;
 import com.raylib.Raylib;
 import com.funkinjava.engine.Game;
 import com.funkinjava.engine.backend.Signal;
+import com.funkinjava.game.states.TestPlay;
 public class Main {
 
 
@@ -63,7 +64,7 @@ public class Main {
     private void startMainLoop() {
 
 
-
+        Game.switchState(new TestPlay());
         while (!Raylib.WindowShouldClose()) {
 
 
@@ -79,6 +80,7 @@ public class Main {
     }
 
     private void update(float dt) {
+        game.Update(dt);
         updateCB.dispatch(dt);
 
     }
@@ -86,7 +88,9 @@ public class Main {
     long peakMem;
 
     private void render() {
+        game.Render();
         renderCB.dispatch(null);
+
     }
 
     public static void main(String[] args) {
